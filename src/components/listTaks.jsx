@@ -37,16 +37,26 @@ export default function ListTasks({ title, done, tasks, setTasks }) {
         <React.Fragment>
             <h1>{title}</h1>
             <div className='taskList'>
-                {tasks
-                    .filter((task) => task.done === done)
-                    .sort((a, b) => a.id - b.id)
-                    .map((task) => (
-                        <div key={task.id} className='task'>
-                            <Checkbox checked={task.done} task={task} tasks={tasks} setTasks={setTasks} />
-                            <span className={task.done ? 'done' : ''}>{task.text}</span>
-                            <RemoveTasks task={task} tasks={tasks} setTasks={setTasks} />
-                        </div>
-                    ))}
+                {tasks.filter((task) => task.done === done).length > 0 ? (
+                    tasks
+                        .filter((task) => task.done === done)
+                        .sort((a, b) => a.id - b.id)
+                        .map((task) => (
+                            <div key={task.id} className='task'>
+                                <Checkbox checked={task.done} task={task} tasks={tasks} setTasks={setTasks} />
+                                <span className={task.done ? 'done' : ''}>{task.text}</span>
+                                <RemoveTasks task={task} tasks={tasks} setTasks={setTasks} />
+                            </div>
+                        ))
+                ) : (
+                    <div className='task'>
+                        {done ? (
+                            <p className='no-tasks'>Nenhuma tarefa finalizada</p>
+                        ) : (
+                            <p className='no-tasks'>Nenhuma tarefa encontrada</p>
+                        )}
+                    </div>
+                )}
             </div>
         </React.Fragment>
     )
