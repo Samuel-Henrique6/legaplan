@@ -12,6 +12,11 @@ export default function AddTasks({ newTask, setNewTask, tasks, setTasks }) {
         setIsModalOpen(false) // Fecha o modal após adicionar a tarefa
     }
 
+    const handleCancel = () => {
+        setIsModalOpen(false)
+        setNewTask('')
+    }
+
     return (
         <>
             {/* Botão para abrir o modal */}
@@ -28,11 +33,12 @@ export default function AddTasks({ newTask, setNewTask, tasks, setTasks }) {
                         <input
                             type='text'
                             value={newTask}
+                            autoFocus
                             onChange={(e) => setNewTask(e.target.value)}
                             placeholder='Digite'
                         />
                         <div className='modal-buttons'>
-                            <button onClick={() => setIsModalOpen(false)} className='cancel-button'>
+                            <button onClick={handleCancel} className='cancel-button'>
                                 Cancelar
                             </button>
                             <button onClick={addTask} className='add-task-button-confirm'>
