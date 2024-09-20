@@ -50,7 +50,9 @@ export default function Header() {
     return (
         <header className='header'>
             <Logo />
-            <h1>Bem-vindo de volta, Marcus</h1>
+            <div className='welcome'>
+                <h1>Bem-vindo de volta, Marcus</h1>
+            </div>
             <h2>
                 {new Intl.DateTimeFormat('pt-BR', {
                     weekday: 'long',
